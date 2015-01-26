@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="http://sms.respon.pancar.in/media/css/widget/microblog.css"/>
+        <link rel="stylesheet" type="text/css" href="http://sms.respon.pancar.in/media/css/widget/microblog.widget.css"/>
+        <link rel="stylesheet" type="text/css" href="http://sms.respon.pancar.in/media/css/widget/jquery-ui/jquery-ui-1.8.16.custom.css"/>
+        <script type="text/javascript" src="http://sms.respon.pancar.in/media/js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="http://sms.respon.pancar.in/media/js/widget/jquery-ui/jquery-ui-1.8.16.custom.min.js"></script>        
+        <script type="text/javascript" src="http://sms.respon.pancar.in/media/js/widget/prettydate.js"></script>
+        <script type="text/javascript" src="http://sms.respon.pancar.in/scripts//widget/widget.js"></script>
+        <script type="text/javascript" src="http://sms.respon.pancar.in/media/js/widget/prettydate.js"></script>
+        <script type="text/javascript">
+	jQuery.noConflict();
+        // Yang pertama berjalan saat DOM ready/halaman sudah selesai termuat.    
+        jQuery(document).ready(function(jQuery){ 
+            jQuery("#microblog-tabs").tabs();
+            
+            //coba();
+            get_broadcast_messages('','');
+            get_custom_messages('','',11,'DATA');
+            get_custom_messages('','',12,'INFO');
+            get_custom_messages('','',13,'BANTUAN');
+            
+            jQuery("#more_broadcast_stream").click(function(){
+                var oldest_date = jQuery("#broadcast_message_stream div.stream_item:last-child").attr("stream_date");
+                var insert_date = jQuery("#broadcast_message_stream div.stream_item:last-child").attr("insert_date");
+                get_broadcast_messages('old_stream',oldest_date,insert_date);
+            });
+            jQuery("#more_custom_message_stream_DATA").click(function(){
+                var oldest_date = jQuery("#custom_message_stream_DATA div.stream_item:last-child").attr("stream_date");
+                var insert_date = jQuery("#custom_message_stream_DATA div.stream_item:last-child").attr("insert_date");
+                get_custom_messages('old_stream',oldest_date,11,'DATA',insert_date);
+            });
+	       jQuery("#more_custom_message_stream_INFO").click(function(){
+                var oldest_date = jQuery("#custom_message_stream_INFO div.stream_item:last-child").attr("stream_date");
+                var insert_date = jQuery("#custom_message_stream_INFO div.stream_item:last-child").attr("insert_date");
+                get_custom_messages('old_stream',oldest_date,12,'INFO',insert_date);
+            });  
+            jQuery("#more_custom_message_stream_BANTUAN").click(function(){
+                var oldest_date = jQuery("#custom_message_stream_BANTUAN div.stream_item:last-child").attr("stream_date");
+                var insert_date = jQuery("#custom_message_stream_BANTUAN div.stream_item:last-child").attr("insert_date");
+                get_custom_messages('old_stream',oldest_date,13,'BANTUAN',insert_date);
+            });  
+
+        });
+
+        </script>
+
+
+
+
+<!--############## End Widget SMS ####################-->
+    </head>
+    <body>
+        <h2>SMS CENTER Tanggap Bencana Longsor Banjarnegara</h2>
+        <div id="microblogging">
+            <!-- Tabs Container -->
+            <div id="microblog-tabs">
+                <!-- Tabs menu -->
+                <ul>
+                    <li><a href="#broadcast-stream">Broadcast</a></li>
+                    <li><a href="#conversation-stream-DATA">DATA</a></li>
+		    <li><a href="#conversation-stream-INFO">INFO</a></li>
+                    <li><a href="#conversation-stream-BANTUAN">BANTUAN</a></li>
+                </ul>
+                <!-- Tabs Content -->
+                <div id="broadcast-stream">
+                    <div id="broadcast_message_container">                
+                        <div id="broadcast_message_stream"></div>
+                        <div class="loading"></div>
+                        <input type="button" class="more_stream" name="more_stream" id="more_broadcast_stream" value="Sebelumnya"/>
+                    </div>
+                </div>
+                <div id="conversation-stream-DATA">
+                    <div id="JATAM_container">                
+                        <div id="custom_message_stream_DATA"></div>
+                        <div class="loading"></div>
+                        <input type="button" class="more_stream" name="more_stream" id="more_custom_message_stream_DATA" value="Sebelumnya"/>
+                    </div>
+                </div> 
+		<div id="conversation-stream-INFO">
+                    <div id="MMH_container">                
+                        <div id="custom_message_stream_INFO"></div>
+                        <div class="loading"></div>
+                        <input type="button" class="more_stream" name="more_stream" id="more_custom_message_stream_INFO" value="Sebelumnya"/>
+                    </div>
+                </div> 
+                <div id="conversation-stream-BANTUAN">
+                    <div id="SW_container">                
+                        <div id="custom_message_stream_BANTUAN"></div>
+                        <div class="loading"></div>
+                        <input type="button" class="more_stream" name="more_stream" id="more_custom_message_stream_BANTUAN" value="Sebelumnya"/>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </body>
+</html>
+
